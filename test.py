@@ -1,11 +1,9 @@
-import logging
+import json
 import os
 
 import requests
-# import module for getting env variable from .env
 from dotenv import load_dotenv
 
-logging.basicConfig(level=logging.INFO)
 load_dotenv('.env')
 
 API_TOKEN = os.getenv('API_TOKEN')
@@ -39,5 +37,7 @@ def list_projects():
     return response.json()
 
 if __name__ == "__main__":
-    logging.info(get_system_info())
-    logging.info(list_projects())
+    print("System Info: ")
+    print(json.dumps(get_system_info(), indent=4))
+    print("\nProjects: ")
+    print(json.dumps(list_projects(), indent=4))
